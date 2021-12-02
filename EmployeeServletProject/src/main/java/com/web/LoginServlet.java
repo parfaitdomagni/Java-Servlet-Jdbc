@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.EmployeeDao;
+import model.Employee;
 
-@WebServlet("/EmployeeServlet")
-public class EmployeeServlet extends HttpServlet {
+
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("Text/html");
@@ -27,12 +30,22 @@ public class EmployeeServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 		else {
-			out.print("<body bgcolor=red>");
-			out.print("<h1><center>Wrong credential try it again</center></h1>");
-			RequestDispatcher rd = request.getRequestDispatcher("/Logging.html");
-			rd.include(request, response);
-			out.print("</body>");
 			
+			EmployeeDao employeeDao = new EmployeeDao();
+			Employee employee = employeeDao.getEmployee(loginId, password);
+			if(employee != null) {
+				out.print("<body bgcolor=blue>");
+				out.print("<h1><center>Welcome to Employee Page</center></h1>");
+				RequestDispatcher rd = request.getRequestDispatcher("/EmployeePageServlet");
+				rd.forward(request, response);
+				out.print("</body>");
+			}else {
+				out.print("<body bgcolor=red>");
+				out.print("<h1><center>Wrong credential try it again</center></h1>");
+				RequestDispatcher rd = request.getRequestDispatcher("/Logging.html");
+				rd.include(request, response);
+				out.print("</body>");
+			}
 			
 		}
 		out.print("</html>");

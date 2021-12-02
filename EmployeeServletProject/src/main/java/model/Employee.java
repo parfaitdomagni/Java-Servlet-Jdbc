@@ -50,7 +50,7 @@ public class Employee {
 		return loginId;
 	}
 	
-	public String setPassword() {
+	public String getPassword() {
 		return password;
 	}
 

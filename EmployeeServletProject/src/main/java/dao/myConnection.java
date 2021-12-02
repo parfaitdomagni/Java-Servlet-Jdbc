@@ -8,7 +8,7 @@ public class myConnection {
 	Connection con = null;
 	try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_first", "pdomagni","Jesus2020");
+		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/practice", "pdomagni","Jesus2020");
 		return con;
 	} 
 	catch (Exception e) {

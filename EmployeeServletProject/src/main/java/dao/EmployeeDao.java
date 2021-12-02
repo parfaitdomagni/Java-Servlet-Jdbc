@@ -23,6 +23,7 @@ public class EmployeeDao {
 			pst.setString(2, password);
 			rs = pst.executeQuery();
 			if(rs.next()) {
+				//Transfering Data from resulset to Java
 				Employee employee = new Employee();
 				employee.setId(rs.getInt(1));
 				employee.setName(rs.getString(2));
@@ -42,18 +43,25 @@ public class EmployeeDao {
 	}
 	
 	//code to register employee information in db
-	public void register(Employee employee) {
+	public int register(Employee employee) {
 		Connection con = null;
 		PreparedStatement pst = null;
 		
 		con = myConnection.getConnection();
 		try {
 			pst = con.prepareStatement("insert into employee values(?,?,?,?,?)");
-			pst.setInt(1, 1);
+			pst.setInt(1, employee.getId());
+			pst.setString(2, employee.getName());
+			pst.setDouble(3, employee.getSalary());
+			pst.setString(4, employee.getLoginId());
+			pst.setString(5, employee.getPassword());
+			int x = pst.executeUpdate();
+			return x;
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return 0;
 		
 	}
 	
