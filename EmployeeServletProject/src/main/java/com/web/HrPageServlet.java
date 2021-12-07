@@ -18,6 +18,8 @@ public class HrPageServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.print("<body bgcolor=yellow>");
 		out.print("<h1><center>Welcome to the Hr page</center></h1>");
+		out.print("<h3><center><a href='EmployeeById.html'> Display Employee By Id </a></center></h3>");
+		out.print("<h3><center><a href='AllEmployeeServlet'>Display All the Employee</a><center><h3>");
 		out.print("</body>");
 	}
 
