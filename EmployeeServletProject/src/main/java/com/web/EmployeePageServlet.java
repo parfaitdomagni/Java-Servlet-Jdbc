@@ -19,8 +19,10 @@ public class EmployeePageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		String loginId = request.getParameter("loginId");
 		out.print("<body bgcolor=blue>");
-		out.print("<h1><center>Welcome to the employee page</center></h1>");
+		out.print("<h1><h3>"+"hi: " + loginId +"</h3><center>Welcome to the employee page</center></h1>");
+		out.print("</body>");
 		
 	}
 

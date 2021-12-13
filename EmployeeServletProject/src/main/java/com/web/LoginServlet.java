@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.EmployeeDao;
 import model.Employee;
@@ -24,6 +25,10 @@ public class LoginServlet extends HttpServlet {
 		String loginId = request.getParameter("loginId");
 		String password = request.getParameter("password");
 		System.out.println("Connection establish........");
+		HttpSession session = request.getSession();
+		session.setAttribute("loginId", loginId);
+		session.setAttribute("password",password);
+		
 		out.print("<html>");
 		if(loginId.equalsIgnoreCase("HR") && password.equalsIgnoreCase("HR")) {
 			RequestDispatcher rd = request.getRequestDispatcher("/HrPageServlet");
